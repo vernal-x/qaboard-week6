@@ -1,0 +1,13 @@
+/* research.md §4 — data-theme 속성으로 다크(메인)/라이트(내부) 분기.
+   각 컴포넌트는 :global([data-theme='dark']) .foo { ... } 형태로 이 속성을 읽는다. */
+[data-theme="dark"] {
+  background: var(--bg-dark);
+  color: var(--ink-dark);
+  min-height: 100%;
+}
+
+[data-theme="light"] {
+  background: var(--bg-light);
+  color: var(--ink-light);
+  min-height: 100%;
+}

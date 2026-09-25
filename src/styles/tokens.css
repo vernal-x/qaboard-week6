@@ -1,0 +1,65 @@
+/* design.md §15 디자인 토큰 — 값을 그대로 CSS 변수로 옮긴다. */
+:root {
+  --font-body: "IBM Plex Sans KR", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --bg-dark: #05070c;
+  --surface-dark: #0b0f1a;
+  --surface-dark-2: #10162a;
+  --card-dark: #141b2e;
+  --border-dark: rgba(255, 255, 255, 0.08);
+  --border-dark-strong: rgba(255, 255, 255, 0.16);
+  --ink-dark: #f4f6fb;
+  --ink-dark-muted: #9aa5c0;
+
+  --bg-light: #f2f4fa;
+  --surface-light: #ffffff;
+  --border-light: #e1e5f0;
+  --ink-light: #14181f;
+  --ink-light-muted: #5c6478;
+
+  --accent-blue: #4f7bff;
+  --accent-violet: #9a5bff;
+  --accent-gradient: linear-gradient(120deg, #4f7bff, #9a5bff);
+
+  --danger: #c53a2c;
+  --danger-bg: #fdf1ef;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --content-max: 1120px;
+
+  /* 간격(spacing) 스케일 — design.md §18의 반복되는 여백 값을 공통 규칙으로 정리.
+     페이지 레이아웃 리듬(콘텐츠 폭 패딩, PageHeader 여백, 본문 상단 여백)에만 적용하고,
+     Hero 전용 장식 여백처럼 명백히 독립적인 값까지 억지로 맞추지는 않는다. */
+  --space-xs: 8px;
+  --space-sm: 14px;
+  --space-md: 20px;
+  --space-lg: 28px;
+  --space-xl: 40px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 88px;
+
+  /* 반복되는 커스텀 배경색 — 여러 파일에 개별 하드코딩되어 있던 값을 토큰으로 승격 */
+  --surface-muted: #f7f8fc; /* 답변 박스·안내 배너 배경 */
+  --surface-active: #eef1fb; /* 활성 필터/탭 배경 */
+
+  /* design.md §16 타이포그래피 스케일 */
+  --fs-logo: 19px;
+  --fs-hero-h1: 60px;
+  --fs-hero-h1-mobile: 32px;
+  --fs-hero-sub: 18px;
+  --fs-hero-sub-mobile: 15px;
+  --fs-eyebrow: 12px;
+  --fs-page-title: 32px;
+  --fs-page-title-mobile: 23px;
+  --fs-page-sub: 14px;
+  --fs-row-title: 15.5px;
+  --fs-label: 13px;
+  --fs-body: 15px;
+  --fs-caption: 12px;
+  --fs-badge: 13px;
+}

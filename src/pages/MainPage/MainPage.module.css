@@ -1,0 +1,267 @@
+.page {
+  padding-bottom: 88px;
+}
+@media (max-width: 640px) {
+  .page {
+    padding-bottom: 64px; /* sticky cta 여유 공간 */
+  }
+}
+
+.hero {
+  position: relative;
+  padding: 88px 0 96px;
+  overflow: hidden;
+}
+@media (max-width: 640px) {
+  .hero {
+    padding: 40px 0 56px;
+  }
+}
+
+/* design.md §10 Aurora Gradient */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background:
+    radial-gradient(60% 50% at 78% 18%, rgba(110, 130, 255, 0.38), transparent 62%),
+    radial-gradient(50% 42% at 92% 62%, rgba(178, 96, 255, 0.3), transparent 65%);
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+/* design.md §10 Grid Glow */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 85%);
+}
+
+.heroRow {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 56px;
+}
+@media (max-width: 640px) {
+  .heroRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 40px;
+  }
+}
+
+.heroCopy {
+  flex: 1 1 560px;
+}
+
+.eyebrow {
+  color: #9fb4ff;
+  border-left: 2px solid var(--accent-blue);
+  padding-left: 10px;
+  margin: 0 0 24px;
+}
+
+.h1 {
+  color: var(--ink-dark);
+  margin: 0 0 22px;
+}
+
+.sub {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink-dark-muted);
+  max-width: 460px;
+  margin: 0 0 36px;
+}
+@media (max-width: 640px) {
+  .sub {
+    font-size: 15px;
+    margin-bottom: 28px;
+  }
+}
+
+.ctaRow {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+@media (max-width: 640px) {
+  .ctaRow {
+    flex-direction: column;
+  }
+}
+
+.miniFlow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #7d87ab;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.arrow {
+  color: var(--accent-blue);
+}
+
+.flow {
+  position: relative;
+  z-index: 1;
+  background: var(--surface-dark-2);
+  padding: 64px 0;
+  border-top: 1px solid var(--border-dark);
+}
+@media (max-width: 640px) {
+  .flow {
+    padding: 44px 0;
+  }
+}
+
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: #7d87ab;
+  margin: 0 0 32px;
+}
+
+.flowSteps {
+  display: flex;
+  /* 브라우저 확인 문제 C — 설명 문구 길이가 달라 각 flowItem의 높이가 제각각인데
+     align-items:center를 쓰면 짧은 항목(03단계)이 세로 중앙 정렬되며 아래로 처져 보였다.
+     상단 기준(flex-start)으로 맞춰 번호/제목이 항상 같은 높이에서 시작하게 한다. */
+  align-items: flex-start;
+}
+@media (max-width: 640px) {
+  .flowSteps {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.flowItem {
+  display: flex;
+  align-items: center;
+  flex: 1 1 0;
+}
+@media (max-width: 640px) {
+  .flowItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.flowNum {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--accent-blue);
+  opacity: 0.9;
+}
+.flowTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink-dark);
+  margin-top: 12px;
+}
+.flowDesc {
+  font-size: 13.5px;
+  color: var(--ink-dark-muted);
+  margin-top: 8px;
+  line-height: 1.6;
+  max-width: 220px;
+}
+.flowArrow {
+  font-size: 22px;
+  color: var(--accent-blue);
+  padding: 0 20px;
+  flex: 0 0 auto;
+}
+@media (max-width: 640px) {
+  .flowArrow {
+    transform: rotate(90deg);
+    padding: 14px 0 14px 10px;
+  }
+}
+
+.badgesSection {
+  position: relative;
+  z-index: 1;
+  padding: 48px 0 64px;
+}
+.badgesRow {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badgesCaption {
+  font-size: 13px;
+  color: #6e7aa8;
+  margin: 0;
+}
+
+.stickyCta {
+  display: none;
+}
+@media (max-width: 640px) {
+  .stickyCta {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    border-top: 1px solid var(--border-dark);
+    background: var(--surface-dark);
+    padding: 16px 20px 20px;
+    box-shadow: 0 -14px 30px -18px rgba(0, 0, 0, 0.7);
+  }
+}
+.stickyCaption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #6e7aa8;
+  text-align: center;
+  margin: 10px 0 0;
+}
+
+/* 헌법 VII / design.md §22 — 기본 상태는 이미 완성된 최종 상태(opacity:1) */
+@media (prefers-reduced-motion: no-preference) {
+  .heroCopy > * {
+    animation: fadeUp 0.6s ease both;
+  }
+  .heroCopy > *:nth-child(2) {
+    animation-delay: 0.05s;
+  }
+  .heroCopy > *:nth-child(3) {
+    animation-delay: 0.1s;
+  }
+  .heroCopy > *:nth-child(4) {
+    animation-delay: 0.16s;
+  }
+  .heroCopy > *:nth-child(5) {
+    animation-delay: 0.22s;
+  }
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

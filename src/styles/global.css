@@ -1,0 +1,60 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--bg-light);
+  color: var(--ink-light);
+  -webkit-font-smoothing: antialiased;
+  /* 브라우저 확인 문제 A — 한글은 어절(단어) 단위로만 줄바꿈하고, 어절 안이 아무리 길어도
+     끊어야 할 때만(예: 공백 없는 긴 문자열) overflow-wrap으로 보조한다. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* design.md §18 — 콘텐츠 최대 폭.
+   좌우 패딩만 선언한다(padding 단축 속성으로 top/bottom:0을 함께 선언하면, 이 클래스와
+   페이지별 padding-top이 같은 요소에 함께 걸릴 때 우선순위가 동률이 되어 어느 쪽이 이기는지가
+   번들 순서에 좌우된다 — 브라우저 확인 문제 B의 원인이었다). top/bottom은 항상 각 페이지가
+   전적으로 책임진다. */
+.content-max {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding-left: var(--space-2xl);
+  padding-right: var(--space-2xl);
+}
+
+@media (max-width: 640px) {
+  .content-max {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+}
+
+/* 헌법 VIII / design.md §21 — 키보드 포커스 전용 스타일(목업에 없던 갭 보완) */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}

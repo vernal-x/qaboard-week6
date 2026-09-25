@@ -1,0 +1,52 @@
+.field {
+  composes: field from "../FormField/FormField.module.css";
+}
+
+.label {
+  composes: label from "../FormField/FormField.module.css";
+}
+
+.textarea {
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  min-height: 180px;
+  line-height: 1.65;
+  width: 100%;
+  resize: none;
+  background: var(--surface-light);
+  border: 1px solid var(--border-light);
+  color: var(--ink-light);
+}
+
+.textarea:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* FormField의 .readOnly/.hasError를 composes로 가져오면, 다른 파일(FormField.module.css)의
+   번들 위치에 따라 .textarea의 border/background shorthand에 밀려 스타일이 사라지는 문제가
+   실제로 있었다(브라우저 확인 문제 — 읽기 전용 상태에서 내용이 여전히 입력창 박스로 보임).
+   같은 파일 안에서 .textarea 바로 다음에 직접 선언해 항상 이기도록 순서를 고정한다. */
+.readOnly {
+  opacity: 1;
+  background: transparent;
+  border-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+  cursor: default;
+}
+
+.hasError {
+  border-color: var(--danger);
+  background: var(--danger-bg);
+}
+
+.charCount {
+  composes: charCount from "../FormField/FormField.module.css";
+}
+
+.errorText {
+  composes: errorText from "../FormField/FormField.module.css";
+}

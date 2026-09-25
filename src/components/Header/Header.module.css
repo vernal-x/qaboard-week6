@@ -1,0 +1,148 @@
+.header {
+  height: 76px;
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 640px) {
+  .header {
+    height: 64px;
+  }
+}
+
+:global([data-theme="dark"]) .header {
+  border-bottom: 1px solid var(--border-dark);
+}
+:global([data-theme="light"]) .header {
+  border-bottom: 1px solid var(--border-light);
+}
+
+.inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  text-decoration: none;
+}
+:global([data-theme="dark"]) .logo {
+  color: var(--ink-dark);
+}
+:global([data-theme="light"]) .logo {
+  color: var(--ink-light);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 14px;
+}
+@media (max-width: 640px) {
+  .nav {
+    display: none;
+  }
+}
+
+.navItem {
+  text-decoration: none;
+  padding-bottom: 4px;
+}
+:global([data-theme="dark"]) .navItem {
+  color: var(--ink-dark-muted);
+}
+:global([data-theme="light"]) .navItem {
+  color: var(--ink-light-muted);
+}
+.navItemActive {
+  font-weight: 500;
+  border-bottom: 2px solid var(--accent-blue);
+}
+:global([data-theme="dark"]) .navItemActive {
+  color: var(--ink-dark);
+}
+:global([data-theme="light"]) .navItemActive {
+  color: var(--ink-light);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 640px) {
+  .right {
+    display: none;
+  }
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+}
+:global([data-theme="dark"]) .userName {
+  color: var(--ink-dark);
+}
+:global([data-theme="light"]) .userName {
+  color: var(--ink-light);
+}
+.userAction {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 13px;
+}
+:global([data-theme="dark"]) .userAction {
+  color: var(--ink-dark-muted);
+}
+:global([data-theme="light"]) .userAction {
+  color: var(--ink-light-muted);
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+@media (max-width: 640px) {
+  .burger {
+    display: flex;
+  }
+}
+.burgerBar {
+  width: 20px;
+  height: 2px;
+}
+:global([data-theme="dark"]) .burgerBar {
+  background: var(--ink-dark);
+}
+:global([data-theme="light"]) .burgerBar {
+  background: var(--ink-light);
+}
+
+.mobilePanel {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 20px 20px;
+}
+@media (max-width: 640px) {
+  .mobilePanel {
+    display: flex;
+  }
+}
+:global([data-theme="dark"]) .mobilePanel {
+  border-top: 1px solid var(--border-dark);
+  background: var(--surface-dark);
+}
+:global([data-theme="light"]) .mobilePanel {
+  border-top: 1px solid var(--border-light);
+  background: var(--surface-light);
+}

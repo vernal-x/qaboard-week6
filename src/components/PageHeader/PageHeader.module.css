@@ -1,0 +1,31 @@
+.header {
+  /* 의도적으로 외부 margin을 갖지 않는다 — 호출부(titleRow 등)가 컨텍스트에 맞는 여백을
+     책임진다. 컴포넌트 자체에 margin을 넣으면 CTA와 나란히 놓일 때 flex 정렬이 margin만큼
+     밀려 틀어질 수 있다. */
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* design.md d-title-row — 배지+subtitle 조합(관리자 질문상세)에서만 쓰는 승인 값 */
+.titleRowSpaced {
+  margin-bottom: 28px;
+}
+
+.title {
+  margin: 0;
+  color: var(--ink-light);
+}
+
+.subtitle {
+  color: var(--ink-light-muted);
+  margin: 6px 0 0;
+}
+
+/* design.md qn-page-sub 인라인 override(margin-bottom:20px) — 배지+subtitle 조합 전용 */
+.subtitleSpaced {
+  margin: 0 0 20px;
+}

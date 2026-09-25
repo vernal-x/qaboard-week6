@@ -1,0 +1,83 @@
+.page {
+  min-height: 100%;
+}
+
+.body {
+  padding-top: var(--space-xl);
+  padding-bottom: 64px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+@media (max-width: 640px) {
+  .body {
+    /* design.md d-body 승인 값 — 리스트 페이지(28px)와 다른, 질문 페이지 전용 24px.
+       이전에 "임의 값"으로 오판해 space-lg(28px)로 통일했던 것을 승인 값으로 되돌린다. */
+    padding-top: 24px;
+    padding-bottom: 48px;
+  }
+}
+
+.back {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--ink-light-muted);
+  margin-bottom: 20px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* PageHeader는 자체 margin이 없으므로(component/PageHeader 참고) 이 페이지가 필요한
+   여백을 명시적으로 지정한다. */
+.headerSpacing {
+  margin-bottom: var(--space-lg);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+.label {
+  color: var(--ink-light);
+}
+
+.answerBox {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  background: var(--surface-muted);
+  padding: 18px 20px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--ink-light);
+  margin-bottom: 16px; /* design.md d-answer-box 승인 값 — 아래 안내 배너와의 간격 */
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  background: var(--surface-muted);
+  color: var(--ink-light-muted);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+@media (max-width: 640px) {
+  .actions {
+    flex-direction: column-reverse;
+  }
+  .actions > * {
+    width: 100%;
+  }
+}

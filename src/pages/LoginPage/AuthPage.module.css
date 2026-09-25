@@ -1,0 +1,46 @@
+.page {
+  min-height: 100%;
+}
+.body {
+  /* content-max가 좌우 패딩을 전담하므로(global.css) 여기서는 상하만 지정한다 */
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+  max-width: 480px;
+}
+/* PageHeader .title과 동일 규칙 — typography.css의 유틸리티 클래스는 margin을 주지 않으므로
+   이 페이지의 제목(h1)도 다른 화면들처럼 자기 소유의 margin 규칙을 직접 갖는다. */
+.heading {
+  margin: 0;
+}
+
+.desc {
+  color: var(--ink-light-muted);
+  line-height: 1.6;
+  margin: 12px 0 24px;
+}
+
+/* QuestionDetailPage .errorText와 동일 규칙(design.md qn-error-text) */
+.formError {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--danger);
+  margin: -8px 0 16px;
+}
+
+/* QuestionDetailPage .actions와 동일 규칙(design.md d-actions) */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+@media (max-width: 640px) {
+  .actions {
+    flex-direction: column-reverse;
+  }
+  .actions > * {
+    width: 100%;
+  }
+}

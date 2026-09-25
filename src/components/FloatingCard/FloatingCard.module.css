@@ -1,0 +1,114 @@
+.visual {
+  position: relative;
+  flex: 0 0 420px;
+  height: 380px;
+}
+@media (max-width: 640px) {
+  .visual {
+    flex: none;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* design.md m-hero-visual 승인 값 — 진입 애니메이션. 헌법 VII에 따라
+   reduced-motion 사용자에게는 비활성(기본 상태가 이미 완성된 최종 상태). */
+@media (prefers-reduced-motion: no-preference) {
+  .visual {
+    animation: floatingCardFadeIn 0.9s ease 0.2s both;
+  }
+}
+@keyframes floatingCardFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.card {
+  background: var(--card-dark);
+  border: 1px solid var(--border-dark-strong);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  width: 300px;
+}
+@media (max-width: 640px) {
+  .card {
+    width: 100%;
+  }
+}
+
+.cardQ {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0 18px 44px -24px rgba(70, 110, 255, 0.5);
+}
+.cardAns {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-left: 3px solid var(--accent-blue);
+  box-shadow: 0 18px 44px -24px rgba(150, 100, 255, 0.5);
+}
+@media (max-width: 640px) {
+  .cardQ,
+  .cardAns {
+    position: static;
+  }
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.chipQ {
+  background: rgba(110, 140, 255, 0.16);
+  color: #a9bcff;
+}
+.chipAns {
+  background: var(--accent-gradient);
+  color: #fff;
+}
+
+.text {
+  font-size: 14px;
+  color: #dfe3f2;
+  line-height: 1.55;
+  margin: 0 0 14px;
+}
+
+.connector {
+  position: absolute;
+  top: 132px;
+  left: 168px;
+  width: 190px;
+  height: 2px;
+  background: var(--accent-gradient);
+  box-shadow: 0 0 14px rgba(130, 140, 255, 0.65);
+  transform: rotate(34deg);
+  transform-origin: left center;
+}
+@media (max-width: 640px) {
+  .connector {
+    position: static;
+    width: 2px;
+    height: 28px;
+    transform: none;
+    margin: 0 0 0 20px;
+    background: linear-gradient(180deg, #4f7bff, #9a5bff);
+  }
+}

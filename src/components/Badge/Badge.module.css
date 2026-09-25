@@ -1,0 +1,40 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 13px;
+  border-radius: 7px;
+  white-space: nowrap;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+
+:global([data-theme="dark"]) .pending {
+  color: #f3c98a;
+  background: rgba(255, 190, 120, 0.09);
+  border: 1px solid rgba(255, 190, 120, 0.35);
+}
+:global([data-theme="light"]) .pending {
+  color: #93590a;
+  background: #fff2df;
+  border: 1px solid #f0d3a0;
+}
+
+:global([data-theme="dark"]) .answered {
+  color: #cdd8ff;
+  background: linear-gradient(120deg, rgba(79, 123, 255, 0.32), rgba(154, 91, 255, 0.32));
+  border: 1px solid rgba(154, 170, 255, 0.4);
+}
+:global([data-theme="light"]) .answered {
+  color: #3547c9;
+  background: #eef1ff;
+  border: 1px solid #c7d0ff;
+}

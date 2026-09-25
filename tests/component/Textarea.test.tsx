@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { Textarea } from "../../src/components/Textarea/Textarea";
 
 describe("Textarea", () => {
@@ -14,5 +15,12 @@ describe("Textarea", () => {
     );
     expect(screen.getByRole("alert")).toHaveTextContent("답변을 입력해주세요.");
     expect(screen.queryByText("0 / 5000")).not.toBeInTheDocument();
+  });
+
+  it("접근성 위반이 없다(tasks.md T084)", async () => {
+    const { container } = render(
+      <Textarea label="내용" value="" onChange={() => {}} maxLength={5000} />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

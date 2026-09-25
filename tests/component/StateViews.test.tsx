@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { LoadingState } from "../../src/components/StateViews/LoadingState";
 import { EmptyState } from "../../src/components/StateViews/EmptyState";
 import { ErrorState } from "../../src/components/StateViews/ErrorState";
@@ -30,5 +31,21 @@ describe("StateViews", () => {
     render(<ErrorState onRetry={onRetry} />);
     screen.getByRole("button", { name: "다시 시도" }).click();
     expect(onRetry).toHaveBeenCalledOnce();
+  });
+
+  it("LoadingState는 접근성 위반이 없다(tasks.md T085)", async () => {
+    const { container } = render(<LoadingState rows={3} />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("EmptyState는 접근성 위반이 없다(tasks.md T085)", async () => {
+    // eslint-disable-next-line jsx-a11y/aria-role -- EmptyState의 role은 ARIA 속성이 아닌 도메인 prop(contracts/components.md)
+    const { container } = render(<EmptyState role="member" onCreate={vi.fn()} />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("ErrorState는 접근성 위반이 없다(tasks.md T085)", async () => {
+    const { container } = render(<ErrorState onRetry={vi.fn()} />);
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

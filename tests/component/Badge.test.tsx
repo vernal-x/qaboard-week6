@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { Badge } from "../../src/components/Badge/Badge";
 
 describe("Badge", () => {
@@ -14,5 +15,10 @@ describe("Badge", () => {
   it("children prop을 받지 않아 텍스트 없는 배지를 만들 수 없다", () => {
     // @ts-expect-error Badge는 children을 받지 않는다(설계 의도)
     render(<Badge tone="pending">커스텀</Badge>);
+  });
+
+  it("접근성 위반이 없다(tasks.md T084)", async () => {
+    const { container } = render(<Badge tone="pending" />);
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { Header } from "../../src/components/Header/Header";
 
 describe("Header", () => {
@@ -25,5 +26,14 @@ describe("Header", () => {
     );
     expect(screen.getAllByText("lemontea 님").length).toBeGreaterThan(0);
     expect(screen.getAllByText("로그아웃").length).toBeGreaterThan(0);
+  });
+
+  it("접근성 위반이 없다(tasks.md T084)", async () => {
+    const { container } = render(
+      <MemoryRouter>
+        <Header activeNav="questions" right={{ kind: "user", name: "lemontea", onLogout: vi.fn() }} />
+      </MemoryRouter>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

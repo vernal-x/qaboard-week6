@@ -503,3 +503,36 @@ Phase 5 완료 후 병렬로 진행할 수 있다. 단, T071(관리자 답변 �
    (실 데이터 연결, 개발용 장치 제거) 세 지점이 각각 안전하게 멈출 수 있는 지점이다.
 3. 각 Phase 종료 시 해당 Phase의 "Gate"/"Checkpoint" 문구에 적힌 조건을 만족해야 다음 Phase로
    넘어간다(헌법 XIII).
+
+---
+
+## Phase 9: Convergence
+
+**목적**: `/speckit-converge`가 spec.md/plan.md/tasks.md 대비 현재 코드를 재평가해 찾아낸,
+기존 Task로 아직 추적되지 않는 잔여 작업. (`tests/e2e/` 부재로 `npm run test:e2e`가
+"No tests found"로 실패하는 문제 등은 이미 T057·T074·T083이 추적 중이라 여기 중복 생성하지
+않았다.)
+
+- [X] T084 axe-core(또는 동급 접근성 자동 검증 도구)를 devDependency로 설치하고
+      `tests/component/{Header,Button,Input,Textarea,Badge}.test.tsx` 등 공통 컴포넌트 테스트에
+      실제 위반 검사를 추가해 0건을 확인 per tasks.md T022 (contradicts)
+  - 요구사항: plan.md §14("컴포넌트 | Vitest + Testing Library + axe-core"), 헌법 XIII
+  - design.md: §21
+  - 검증: `package.json`에 axe 관련 패키지가 존재하고, 해당 테스트가 실제로 접근성 위반을
+    검사한 뒤 0건으로 통과함(현재는 T022가 완료로 표시되어 있으나 axe-core가 프로젝트에
+    설치된 적이 없어 이 검증이 실제로 수행되지 않았다)
+
+---
+
+## Phase 10: Convergence
+
+**목적**: T084 완료 후 재평가한 잔여 작업. Phase 8(T057, T072~T080, T083)과 중복되지 않는
+항목만 담는다.
+
+- [X] T085 `QuestionCard`/`StateViews`에 대한 axe-core 접근성 검사를 추가 per plan.md §14 (partial)
+  - 요구사항: plan.md §14("컴포넌트 | Vitest + Testing Library + axe-core | Header/Button/Input/
+    Textarea/Badge/QuestionCard/StateViews")
+  - design.md: §21
+  - 검증: `tests/component/QuestionCard.test.tsx`(신규)와 `tests/component/StateViews.test.tsx`에
+    T084와 동일한 `axe(container)` → `toHaveNoViolations()` 검사가 추가되어 통과함(T084는 plan.md
+    §14가 명시한 7개 컴포넌트 중 5개만 처리했고, `QuestionCard`는 테스트 파일 자체가 없었다)

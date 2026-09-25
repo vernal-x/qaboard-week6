@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { Input } from "../../src/components/Input/Input";
 
 describe("Input", () => {
@@ -13,5 +14,12 @@ describe("Input", () => {
   it("readOnly면 글자수 카운터를 보여주지 않는다(design.md §13)", () => {
     render(<Input label="제목" value="환불 절차가 어떻게 되나요?" maxLength={100} readOnly />);
     expect(screen.queryByText(/\/ 100/)).not.toBeInTheDocument();
+  });
+
+  it("접근성 위반이 없다(tasks.md T084)", async () => {
+    const { container } = render(
+      <Input label="제목" value="" onChange={() => {}} maxLength={100} />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

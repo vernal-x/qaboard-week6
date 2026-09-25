@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
+import { axe } from "jest-axe";
 import { Button } from "../../src/components/Button/Button";
 
 describe("Button", () => {
@@ -25,5 +26,14 @@ describe("Button", () => {
     );
     const link = screen.getByRole("link", { name: "질문 작성하기" });
     expect(link).toHaveAttribute("href", "/questions/new");
+  });
+
+  it("접근성 위반이 없다(tasks.md T084)", async () => {
+    const { container } = render(
+      <Button variant="primary" onClick={() => {}}>
+        등록하기
+      </Button>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

@@ -3,12 +3,25 @@
 **Feature**: 001-qa-board · 이 SQL이 `supabase/migrations/0001_init.sql`의 내용이 된다. 실제
 파일 작성은 구현 단계(`tasks.md`)에서 하며, 여기서는 계약(스키마·정책 문언)을 고정한다.
 
-> **구현 시점 기록(tasks.md T052~T054)**: 실제 Supabase 프로젝트에는 이 계약과 의미가 동일하지만
-> 함수 이름이 다른 "수업 자료" SQL이 이미 적용되어 있다 — `set_question_answered` →
-> `mark_question_answered`, `current_role()` → `is_admin()`(boolean 반환). 관리자가 모든
-> `profiles`를 읽을 수 있는 보강 정책도 추가로 적용됨. 실제 적용본 기록은
-> `supabase/migrations/0001_init.sql`, `0002_admin_profiles_read_policy.sql` 참고(기록용 —
-> 실행 대상 아님). DB는 이 계약을 만족하는 것으로 확인되었으며 재생성하지 않는다.
+> **구현 시점 기록(tasks.md T052~T054)**: 실제 Supabase 프로젝트에는 이 계약과 의미는 같지만
+> 세부사항이 다른 "수업 자료" SQL이 이미 적용되어 있다. 실제 적용본 기록은
+> `supabase/migrations/0001_init.sql`, `0002_admin_profiles_read_policy.sql`을 최신 기준으로
+> 참고할 것(기록용 — 실행 대상 아님). DB는 이 계약의 의도를 만족하는 것으로 확인되었으며
+> 재생성하지 않는다. 아래 §1~§4 본문은 `/speckit-plan` 단계에서 고정한 원래 설계 계약이며,
+> 실제 적용본과 다음 두 가지가 다르다:
+>
+> - **FK 대상**: 이 문서의 §1은 `questions.user_id`/`answers.admin_id`가 `public.profiles(id)`를
+>   참조한다고 적었지만, 실제 적용본은 둘 다 `auth.users(id)`를 직접 참조한다(`answers.admin_id`는
+>   `on delete restrict`). `questions`/`answers`와 `profiles` 사이에는 직접 FK가 없다.
+> - **작성자 닉네임 조회 방식**: 위 FK 차이 때문에 PostgREST embed(`select("*, profiles(display_name))")`)가
+>   "관계를 찾을 수 없음" 오류로 실패한 적이 있다(관리자 목록·질문 상세에서 재현). 앱 코드
+>   (`questionsRepository`)는 이를 embed 대신 `profiles`를 `user_id`로 필터링하는 **별도 쿼리**로
+>   조회해 합치는 방식으로 수정되어 있다.
+>
+> 함수·정책 이름도 다르다 — `set_question_answered` → `mark_question_answered`,
+> `current_role()` → `is_admin()`(boolean 반환), RLS 정책 이름 전체가 실제 적용본 고유의 이름을
+> 쓴다(`supabase/migrations/0001_init.sql` 참고). 관리자가 모든 `profiles`를 읽을 수 있는 보강
+> 정책도 추가로 적용됨(`0002_admin_profiles_read_policy.sql`).
 
 ## 1. Tables
 
